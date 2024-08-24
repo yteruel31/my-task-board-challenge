@@ -14,6 +14,30 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
     },
+    colors: {
+      white: "#F8FAFC",
+      "in-progress": {
+        400: "#f5d565",
+        500: "#e9a23b",
+      },
+      completed: {
+        400: "#a0ecb1",
+        500: "#32d657",
+      },
+      wontdo: {
+        400: "#f7d4d3",
+        500: "#dd524c",
+      },
+      todo: {
+        400: "#e3e8ee",
+      },
+      "new-task": "#f5e8d5",
+      gray: {
+        300: "#E3E8EF",
+        400: "#00000033",
+        500: "#97A3B6",
+      },
+    },
   },
   plugins: [],
 };
