@@ -3,8 +3,16 @@ import { EditDuotone, Logo } from "@/components/_ui/Icons";
 import React from "react";
 import { Task } from "@/components/Tasks/Task";
 import { AddTask } from "@/components/Tasks/AddTask";
+import { validateRequest } from "@/auth";
+import { redirect } from "next/navigation";
 
-export default function Home() {
+export default async function Home() {
+  const { user } = await validateRequest();
+
+  if (!user) {
+    return redirect("/login");
+  }
+
   return (
     <Container>
       <div className="flex flex-col gap-10">

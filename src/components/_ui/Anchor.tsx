@@ -2,7 +2,7 @@ import { forwardRef } from "react";
 import { cva, VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
-const buttonVariants = cva(
+const anchorVariants = cva(
   "h-9 px-4 py-2 inline-flex text-white items-center justify-center whitespace-nowrap text-sm font-medium rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
@@ -17,18 +17,18 @@ const buttonVariants = cva(
   },
 );
 
-interface ButtonProps
-  extends React.ComponentPropsWithoutRef<"button">,
-    VariantProps<typeof buttonVariants> {}
+interface AnchorProps
+  extends React.ComponentPropsWithoutRef<"a">,
+    VariantProps<typeof anchorVariants> {}
 
-export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+export const Anchor = forwardRef<HTMLAnchorElement, AnchorProps>(
   ({ variant, className, ...rest }, ref) => (
-    <button
+    <a
       {...rest}
       ref={ref}
-      className={cn(buttonVariants({ variant, className }))}
+      className={cn(anchorVariants({ variant, className }))}
     />
   ),
 );
 
-Button.displayName = "Button";
+Anchor.displayName = "Anchor";

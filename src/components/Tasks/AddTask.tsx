@@ -11,7 +11,7 @@ import { TaskDetails } from "@/components/Tasks/TastDetails/TaskDetails";
 
 export const AddTask = () => {
   return (
-    <Dialog open>
+    <Dialog>
       <DialogTrigger>
         <AddTaskBase />
       </DialogTrigger>
