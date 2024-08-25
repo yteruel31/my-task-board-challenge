@@ -77,7 +77,7 @@ export const DoneRound = (props: SVGProps<SVGSVGElement>) => (
     {...props}
     role="img"
     viewBox="0 0 20 20"
-    fill="none"
+    fill="currentColor"
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
@@ -91,11 +91,11 @@ export const DoneRound = (props: SVGProps<SVGSVGElement>) => (
 
 export const DoneRoundDuotone = (props: SVGProps<SVGSVGElement>) => (
   <svg
-    {...props}
     role="img"
     viewBox="0 0 20 20"
-    fill="none"
+    fill="currentColor"
     xmlns="http://www.w3.org/2000/svg"
+    {...props}
   >
     <circle
       cx="10"

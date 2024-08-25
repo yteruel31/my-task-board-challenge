@@ -1,9 +1,33 @@
 import { TimeAtackDuotone } from "@/components/_ui/Icons";
 import React from "react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogPopover,
+  DialogTrigger,
+} from "@/components/_ui/Dialog";
+import { TaskDetails } from "@/components/Tasks/TastDetails/TaskDetails";
 
 export const Task = () => {
   return (
-    <div className="flex gap-5 items-center p-4 bg-in-progress-400 rounded-lg">
+    <Dialog>
+      <DialogTrigger>
+        <TaskBase />
+      </DialogTrigger>
+      <DialogPopover>
+        <DialogHeader>Task details</DialogHeader>
+        <DialogContent>
+          <TaskDetails />
+        </DialogContent>
+      </DialogPopover>
+    </Dialog>
+  );
+};
+
+const TaskBase = () => {
+  return (
+    <div className="flex gap-5 items-center text-left p-4 bg-in-progress-400 rounded-lg">
       <div className="bg-white min-w-11 min-h-11 flex items-center justify-center rounded-lg self-start">
         <span>🎲</span>
       </div>

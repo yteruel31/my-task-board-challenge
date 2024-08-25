@@ -34,9 +34,11 @@ const config: Config = {
       "new-task": "#f5e8d5",
       gray: {
         300: "#E3E8EF",
-        400: "#00000033",
-        500: "#97A3B6",
+
+        400: "#97A3B6",
       },
+      overlay: "#00000033",
+      focus: "#3662E3",
     },
   },
   plugins: [],
