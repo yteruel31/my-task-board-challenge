@@ -12,7 +12,7 @@ import { z } from "zod";
 import { useServerAction } from "zsa-react";
 import { useDialogContext } from "@/components/_ui/Dialog";
 import { Task } from "@prisma/client";
-import { updateTaskAction } from "@/app/boards/[id]/actions";
+import { deleteTaskAction, updateTaskAction } from "@/app/boards/[id]/actions";
 
 const addTaskSchema = z.object({
   title: z.string().min(1),
@@ -46,14 +46,25 @@ export const EditTaskForm = ({
     },
   });
 
-  const { execute: updateTask, isPending } = useServerAction(updateTaskAction, {
-    onSuccess: () => {
-      setOpen(false);
-    },
-    onError: ({ err }) => {
-      console.error(err);
-    },
-  });
+  const { execute: updateTask, isPending: updateTaskIsPending } =
+    useServerAction(updateTaskAction, {
+      onSuccess: () => {
+        setOpen(false);
+      },
+      onError: ({ err }) => {
+        console.error(err);
+      },
+    });
+
+  const { execute: deleteTask, isPending: deleteTaskIsPending } =
+    useServerAction(deleteTaskAction, {
+      onSuccess: () => {
+        setOpen(false);
+      },
+      onError: ({ err }) => {
+        console.error(err);
+      },
+    });
 
   const onSubmit: SubmitHandler<z.infer<typeof addTaskSchema>> = (values) => {
     updateTask({ ...values, id: task.id, boardId });
@@ -116,7 +127,12 @@ export const EditTaskForm = ({
           />
         </div>
         <div className="flex justify-end gap-4">
-          <Button type="submit" variant="secondary" disabled={!isValid}>
+          <Button
+            type="button"
+            variant="secondary"
+            disabled={!isValid}
+            onClick={() => deleteTask({ boardId, id: task.id })}
+          >
             Delete
           </Button>
           <Button type="submit" disabled={!isValid}>

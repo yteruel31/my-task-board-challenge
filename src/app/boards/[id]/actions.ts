@@ -2,7 +2,7 @@
 
 import { authenticatedAction } from "@/lib/safe-action";
 import { z } from "zod";
-import { updateTask } from "@/data-access/task";
+import { deleteTask, updateTask } from "@/data-access/task";
 import { Status } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 
@@ -26,6 +26,20 @@ export const updateTaskAction = authenticatedAction
       icon: input.icon,
       status: input.status as Status,
     });
+
+    revalidatePath(`/boards/${input.boardId}`);
+  });
+
+export const deleteTaskAction = authenticatedAction
+  .createServerAction()
+  .input(
+    z.object({
+      id: z.string().min(1),
+      boardId: z.string().min(1),
+    }),
+  )
+  .handler(async ({ input }) => {
+    await deleteTask(input.id);
 
     revalidatePath(`/boards/${input.boardId}`);
   });

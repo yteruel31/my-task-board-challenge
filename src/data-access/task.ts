@@ -20,3 +20,10 @@ export const updateTask = async (task: Omit<Task, "boardId">) =>
       id: task.id,
     },
   });
+
+export const deleteTask = async (id: string) =>
+  database.task.delete({
+    where: {
+      id,
+    },
+  });
