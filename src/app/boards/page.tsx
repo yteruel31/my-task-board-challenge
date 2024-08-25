@@ -1,38 +1,20 @@
-import { Container } from "@/components/_ui/Container";
-import { EditDuotone, Logo } from "@/components/_ui/Icons";
-import React from "react";
-import { Task } from "@/components/Tasks/Task";
-import { AddTask } from "@/components/Tasks/AddTask";
-import { validateRequest } from "@/auth";
-import { redirect } from "next/navigation";
+import { Anchor } from "@/components/_ui/Anchor";
+import { getBoardsByUserId } from "@/data-access/board";
+import { assertAuthenticated } from "@/lib/session";
 
-export default async function Home() {
-  const { user } = await validateRequest();
+export default async function Page() {
+  const user = await assertAuthenticated();
 
-  if (!user) {
-    return redirect("/login");
-  }
+  const boards = await getBoardsByUserId(user.id);
 
   return (
-    <Container>
-      <div className="flex flex-col gap-10">
-        <div className="flex gap-4 items-start">
-          <Logo width={40} />
-          <div className="flex flex-col gap-3">
-            <div className="flex gap-4 items-center">
-              <h2 className="text-4xl">My Task board</h2>
-              <EditDuotone width={24} />
-            </div>
-            <span>Tasks to keep organised</span>
-          </div>
-        </div>
-        <div className="w-full flex flex-col gap-5">
-          <Task />
-          <Task />
-          <Task />
-          <AddTask />
-        </div>
-      </div>
-    </Container>
+    <div>
+      <h1>List of boards</h1>
+      {boards.map((board) => (
+        <Anchor key={board.id} href={`/boards/${board.id}`}>
+          {board.title}
+        </Anchor>
+      ))}
+    </div>
   );
 }

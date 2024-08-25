@@ -93,7 +93,7 @@ export const DoneRoundDuotone = (props: SVGProps<SVGSVGElement>) => (
   <svg
     role="img"
     viewBox="0 0 20 20"
-    fill="currentColor"
+    fill="none"
     xmlns="http://www.w3.org/2000/svg"
     {...props}
   >
