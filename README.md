@@ -1,36 +1,64 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# My Task Board
 
-## Getting Started
+<div align="center"><img src="./overview.png" width=700 alt="image of desktop preview of coffee list"></div>
 
-First, run the development server:
+Solution proposed for the challenge of the [DevChallenge](https://devchallenges.io/challenge/my-task-board-app) platform.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Check the [demo](https://my-task-board-challenge-production.up.railway.app/).
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+> Still in development: you need to go on login page directly to access the app. I need to implement a landing page.
+> https://my-task-board-challenge-production.up.railway.app/login
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Todo list
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- [ ] Create a simple task management application following the given design.
+- [ ] By default, it should show a board with 4 tasks like in the design.
+- [ ] When users select `Add new task` option, a new task is added with a default name.
+- [x] Users can edit task name, description, icon, and status.
+- [x] Users can delete tasks by selecting `Delete` button.
+- [x] Users can edit board name and optionally, users can edit board description as well.
+- [x] Each board can be accessed by a unique id, e.g: /board/:board-id
+- [x] Deploy the solution and submit Repository URL and Demo URL.
 
-## Learn More
+## Stack used
 
-To learn more about Next.js, take a look at the following resources:
+- Authentication (Lucia)
+- Authorization
+- Tailwind CSS
+- Next.js
+- TypeScript
+- Playwright
+- Prisma
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## How to Get Started
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Prerequisites
 
-## Deploy on Vercel
+This app does uses Docker and Docker Compose to run a postgres database, so you will need to either have those installed, or modify the project to point to a hosted database solution.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## How to Run
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+1. `cp .env.sample .env`
+2. `yarn install`
+3. `docker compose up`
+4. `yarn run dev`
+
+## Env Setup
+
+This app depends on an external service: **github oauth**. You'll need to following the steps below and make sure everything is setup and copy the necesssary values into your .env file:
+
+### Database
+
+This app uses postgres. Setup a database and get your **DATABASE_URL**.
+
+### Github Provider
+
+By default, this app only comes with the github provider which you'll need to setup:
+
+1. https://github.com/settings/developers
+2. Create a new OAuth App
+3. Set the callback URL to `http://localhost:3000/login/github/callback`
+4. Set the client id and secret inside of .env
+
+- **GITHUB_CLIENT_ID**
+- **GITHUB_CLIENT_SECRET**
