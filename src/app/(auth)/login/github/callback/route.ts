@@ -12,6 +12,7 @@ export async function GET(request: Request): Promise<Response> {
   const storedState = cookies().get("github_oauth_state")?.value ?? null;
 
   if (!code || !state || !storedState || state !== storedState) {
+    console.error("Invalid state or code");
     return new Response(null, {
       status: 400,
     });
