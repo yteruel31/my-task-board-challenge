@@ -17,6 +17,7 @@ import { useServerAction } from "zsa-react";
 import { useDialogContext } from "@/components/_ui/Dialog";
 import { Task } from "@prisma/client";
 import { deleteTaskAction, updateTaskAction } from "@/app/boards/[id]/actions";
+import { useToast } from "@/components/_ui/use-toast";
 
 const addTaskSchema = z.object({
   title: z.string().min(1),
@@ -32,6 +33,7 @@ export const EditTaskForm = ({
   boardId: string;
   task: Task;
 }) => {
+  const { toast } = useToast();
   const { setOpen } = useDialogContext();
 
   const {
@@ -53,20 +55,38 @@ export const EditTaskForm = ({
   const { execute: updateTask, isPending: updateTaskIsPending } =
     useServerAction(updateTaskAction, {
       onSuccess: () => {
+        toast({
+          title: "Task edited",
+          variant: "success",
+        });
         setOpen(false);
       },
       onError: ({ err }) => {
         console.error(err);
+        toast({
+          title: "Something went wrong",
+          description: err.message,
+          variant: "destructive",
+        });
       },
     });
 
   const { execute: deleteTask, isPending: deleteTaskIsPending } =
     useServerAction(deleteTaskAction, {
       onSuccess: () => {
+        toast({
+          title: "Task deleted",
+          variant: "success",
+        });
         setOpen(false);
       },
       onError: ({ err }) => {
         console.error(err);
+        toast({
+          title: "Something went wrong",
+          description: err.message,
+          variant: "destructive",
+        });
       },
     });
 

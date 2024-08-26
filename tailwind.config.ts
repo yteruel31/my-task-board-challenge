@@ -45,6 +45,6 @@ const config: Config = {
       focus: "#3662E3",
     },
   },
-  plugins: [],
+  plugins: [require("tailwindcss-animate")],
 };
 export default config;

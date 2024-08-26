@@ -14,6 +14,7 @@ import {
   useRole,
 } from "@floating-ui/react";
 import { CloseRingDuotone1 } from "@/components/_ui/Icons";
+import { cn } from "@/lib/utils";
 
 interface DialogOptions {
   initialOpen?: boolean;
@@ -102,7 +103,10 @@ interface DialogTriggerProps {
 export const DialogTrigger = React.forwardRef<
   HTMLElement,
   React.HTMLProps<HTMLElement> & DialogTriggerProps
->(function DialogTrigger({ children, asChild = false, ...props }, propRef) {
+>(function DialogTrigger(
+  { children, asChild = false, className, ...props },
+  propRef,
+) {
   const context = useDialogContext();
   const childrenRef = (children as any).ref;
   const ref = useMergeRefs([context.refs.setReference, propRef, childrenRef]);
@@ -113,6 +117,7 @@ export const DialogTrigger = React.forwardRef<
       children,
       context.getReferenceProps({
         ref,
+
         ...props,
         ...children.props,
         "data-state": context.open ? "open" : "closed",
@@ -126,6 +131,7 @@ export const DialogTrigger = React.forwardRef<
       // The user can style the trigger based on the state
       data-state={context.open ? "open" : "closed"}
       {...context.getReferenceProps(props)}
+      className={cn("cursor-pointer", className)}
     >
       {children}
     </div>

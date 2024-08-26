@@ -4,6 +4,7 @@ import "./globals.css";
 import { Header } from "@/app/_header/header";
 import { TooltipProvider } from "@/components/_ui/Tooltip";
 import { ProgressBarProvider } from "@/components/_ui/ProgressBarProvider";
+import { Toaster } from "@/components/_ui/Toaster";
 
 const outfit = Outfit({ subsets: ["latin"] });
 
@@ -25,6 +26,7 @@ export default function RootLayout({
             {children}
           </ProgressBarProvider>
         </TooltipProvider>
+        <Toaster />
       </body>
     </html>
   );

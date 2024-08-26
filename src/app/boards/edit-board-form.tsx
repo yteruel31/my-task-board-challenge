@@ -10,6 +10,7 @@ import { useServerAction } from "zsa-react";
 import { useDialogContext } from "@/components/_ui/Dialog";
 import { Board } from "@prisma/client";
 import { deleteBoardAction, updateBoardAction } from "@/app/boards/actions";
+import { useToast } from "@/components/_ui/use-toast";
 
 const addBoardSchema = z.object({
   title: z.string().min(1),
@@ -17,6 +18,7 @@ const addBoardSchema = z.object({
 });
 
 export const EditBoardForm = ({ board }: { board: Board }) => {
+  const { toast } = useToast();
   const { setOpen } = useDialogContext();
 
   const {
@@ -35,20 +37,38 @@ export const EditBoardForm = ({ board }: { board: Board }) => {
   const { execute: updateBoard, isPending: updateBoardIsPending } =
     useServerAction(updateBoardAction, {
       onSuccess: () => {
+        toast({
+          title: "Board edited",
+          variant: "success",
+        });
         setOpen(false);
       },
       onError: ({ err }) => {
         console.error(err);
+        toast({
+          title: "Something went wrong",
+          description: err.message,
+          variant: "destructive",
+        });
       },
     });
 
   const { execute: deleteBoard, isPending: deleteBoardIsPending } =
     useServerAction(deleteBoardAction, {
       onSuccess: () => {
+        toast({
+          title: "Board deleted",
+          variant: "success",
+        });
         setOpen(false);
       },
       onError: ({ err }) => {
         console.error(err);
+        toast({
+          title: "Something went wrong",
+          description: err.message,
+          variant: "destructive",
+        });
       },
     });
 

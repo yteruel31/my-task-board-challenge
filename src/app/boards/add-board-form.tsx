@@ -9,6 +9,7 @@ import { z } from "zod";
 import { useServerAction } from "zsa-react";
 import { useDialogContext } from "@/components/_ui/Dialog";
 import { createBoardAction } from "@/app/boards/actions";
+import { useToast } from "@/components/_ui/use-toast";
 
 const addBoardSchema = z.object({
   title: z.string().min(1),
@@ -16,6 +17,7 @@ const addBoardSchema = z.object({
 });
 
 export const AddBoardForm = ({ userId }: { userId: string }) => {
+  const { toast } = useToast();
   const { setOpen } = useDialogContext();
 
   const {
@@ -31,10 +33,20 @@ export const AddBoardForm = ({ userId }: { userId: string }) => {
     createBoardAction,
     {
       onSuccess: () => {
+        toast({
+          title: "Board created",
+          description: "You can now add tasks to it",
+          variant: "success",
+        });
         setOpen(false);
       },
       onError: ({ err }) => {
         console.error(err);
+        toast({
+          title: "Something went wrong",
+          description: err.message,
+          variant: "destructive",
+        });
       },
     },
   );

@@ -16,6 +16,7 @@ import { z } from "zod";
 import { useServerAction } from "zsa-react";
 import { createTaskAction } from "@/app/boards/[id]/@addTask/actions";
 import { useDialogContext } from "@/components/_ui/Dialog";
+import { useToast } from "@/components/_ui/use-toast";
 
 const addTaskSchema = z.object({
   title: z.string().min(1),
@@ -26,6 +27,7 @@ const addTaskSchema = z.object({
 
 export const AddTaskForm = ({ boardId }: { boardId: string }) => {
   const { setOpen } = useDialogContext();
+  const { toast } = useToast();
 
   const {
     handleSubmit,
@@ -39,10 +41,20 @@ export const AddTaskForm = ({ boardId }: { boardId: string }) => {
 
   const { execute: createTask, isPending } = useServerAction(createTaskAction, {
     onSuccess: () => {
+      toast({
+        title: "Task created",
+        description: "You can now follow up on your task",
+        variant: "success",
+      });
       setOpen(false);
     },
     onError: ({ err }) => {
       console.error(err);
+      toast({
+        title: "Something went wrong",
+        description: err.message,
+        variant: "destructive",
+      });
     },
   });
 
