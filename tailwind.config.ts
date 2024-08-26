@@ -16,6 +16,7 @@ const config: Config = {
     },
     colors: {
       white: "#F8FAFC",
+      foreground: "#040616",
       "in-progress": {
         400: "#f5d565",
         500: "#e9a23b",
