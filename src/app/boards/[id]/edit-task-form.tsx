@@ -4,7 +4,11 @@ import { TextInput } from "@/components/_ui/TextInput";
 import { TextArea } from "@/components/_ui/TextArea";
 import { IconSelect } from "@/components/Tasks/TastDetails/IconSelect";
 import { StatusSelect } from "@/components/Tasks/TastDetails/StatusSelect";
-import { TimeAtackDuotone } from "@/components/_ui/Icons";
+import {
+  CloseRingDuotone,
+  DoneRoundDuotone,
+  TimeAtackDuotone,
+} from "@/components/_ui/Icons";
 import { Button } from "@/components/_ui/Button";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -112,13 +116,13 @@ export const EditTaskForm = ({
                   {
                     value: "COMPLETED",
                     label: "Completed",
-                    icon: <TimeAtackDuotone width={20} />,
+                    icon: <DoneRoundDuotone width={20} />,
                     color: "bg-completed-500",
                   },
                   {
                     value: "WONTDO",
                     label: "Won't do",
-                    icon: <TimeAtackDuotone width={20} />,
+                    icon: <CloseRingDuotone width={20} />,
                     color: "bg-wontdo-500",
                   },
                 ]}
