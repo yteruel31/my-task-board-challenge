@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 import "./globals.css";
+import { Header } from "@/app/_header/header";
+import { TooltipProvider } from "@/components/_ui/Tooltip";
 
 const outfit = Outfit({ subsets: ["latin"] });
 
@@ -15,7 +17,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={outfit.className}>{children}</body>
+      <body className={outfit.className}>
+        <TooltipProvider>
+          <Header />
+          {children}
+        </TooltipProvider>
+      </body>
     </html>
   );
 }
