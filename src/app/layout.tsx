@@ -3,6 +3,7 @@ import { Outfit } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/app/_header/header";
 import { TooltipProvider } from "@/components/_ui/Tooltip";
+import { ProgressBarProvider } from "@/components/_ui/ProgressBarProvider";
 
 const outfit = Outfit({ subsets: ["latin"] });
 
@@ -19,8 +20,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={outfit.className}>
         <TooltipProvider>
-          <Header />
-          {children}
+          <ProgressBarProvider>
+            <Header />
+            {children}
+          </ProgressBarProvider>
         </TooltipProvider>
       </body>
     </html>
