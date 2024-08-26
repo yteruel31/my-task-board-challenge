@@ -11,6 +11,8 @@ import {
   DialogTrigger,
 } from "@/components/_ui/Dialog";
 import { EditBoardForm } from "@/app/boards/edit-board-form";
+import { Button } from "@/components/_ui/Button";
+import { AddBoardForm } from "@/app/boards/add-board-form";
 
 export default async function Page() {
   const user = await assertAuthenticated();
@@ -46,6 +48,17 @@ export default async function Page() {
           </Dialog>
         </div>
       ))}
+      <Dialog>
+        <DialogTrigger className="self-start">
+          <Button>Add new board</Button>
+        </DialogTrigger>
+        <DialogPopover>
+          <DialogHeader>Board details</DialogHeader>
+          <DialogContent>
+            <AddBoardForm userId={user.id} />
+          </DialogContent>
+        </DialogPopover>
+      </Dialog>
     </>
   );
 }

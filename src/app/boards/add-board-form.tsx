@@ -8,7 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useServerAction } from "zsa-react";
 import { useDialogContext } from "@/components/_ui/Dialog";
-import { createBoardAction } from "@/app/boards/@addBoard/actions";
+import { createBoardAction } from "@/app/boards/actions";
 
 const addBoardSchema = z.object({
   title: z.string().min(1),
