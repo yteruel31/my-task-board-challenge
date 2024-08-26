@@ -1,6 +1,6 @@
 # My Task Board
 
-<div align="center"><img src="./overview.png" width=700 alt="image of desktop preview of coffee list"></div>
+<div align="center"><img src="./overview.png" width=300 alt="image of desktop preview of coffee list"></div>
 
 Solution proposed for the challenge of the [DevChallenge](https://devchallenges.io/challenge/my-task-board-app) platform.
 
