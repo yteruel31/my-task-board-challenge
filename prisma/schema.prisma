@@ -45,7 +45,7 @@ model Task {
   icon        String
   status      Status
   boardId     String
-  board       Board  @relation(fields: [boardId], references: [id])
+  board       Board  @relation(fields: [boardId], references: [id], onDelete: Cascade)
 }
 
 enum Status {
