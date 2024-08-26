@@ -150,7 +150,7 @@ export const DialogPopover = React.forwardRef<
               ref={ref}
               aria-labelledby={context.labelId}
               aria-describedby={context.descriptionId}
-              className="h-full bg-white w-1/2 float-right rounded-lg p-4 flex flex-col"
+              className="h-full bg-white w-full md:w-1/2 float-right rounded-lg p-4 flex flex-col"
               {...context.getFloatingProps(props)}
             >
               {props.children}

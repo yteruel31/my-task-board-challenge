@@ -47,7 +47,7 @@ export const AddTaskForm = ({ boardId }: { boardId: string }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form className="h-full" onSubmit={handleSubmit(onSubmit)}>
       <div className="flex flex-col justify-between h-full">
         <div className="flex flex-col gap-5">
           <TextInput {...register("title")} label="Task name" />

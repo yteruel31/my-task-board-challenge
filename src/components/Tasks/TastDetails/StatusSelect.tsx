@@ -26,21 +26,21 @@ export const StatusSelect = ({
       {items.map((item) => (
         <ToggleGroup.Item
           key={item.value}
-          className="group min-w-11 min-h-11 flex justify-between items-center rounded-lg border border-gray-300 select-none p-1 data-[state=on]:border-focus"
+          className="group min-w-8 min-h-8 md:min-w-11 md:min-h-11 flex justify-between items-center rounded-lg border border-gray-300 select-none p-1 data-[state=on]:border-focus"
           value={item.value}
           aria-label={item.value}
         >
           <div className="flex items-center gap-3">
             <div
               className={cn(
-                "min-w-11 min-h-11 flex items-center justify-center rounded-lg",
+                "min-w-8 min-h-8 md:min-w-11 md:min-h-11 flex items-center justify-center rounded-lg",
                 item.color,
               )}
             >
               {item.icon}
             </div>
 
-            {item.label}
+            <span className="text-sm md:text-base">{item.label}</span>
           </div>
           <MaterialSymbol
             icon="check_circle"
