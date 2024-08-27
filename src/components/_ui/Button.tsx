@@ -9,6 +9,8 @@ const buttonVariants = cva(
       variant: {
         primary: "bg-focus",
         secondary: "bg-gray-400",
+        tertiary:
+          "bg-transparent text-foreground border border-gray-400 hover:bg-gray-300",
       },
     },
     defaultVariants: {

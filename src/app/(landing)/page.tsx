@@ -1,9 +1,11 @@
+import { HeroSection } from "@/app/(landing)/_sections/hero";
+import { FeaturesSection } from "@/app/(landing)/_sections/features";
+
 export default function Home() {
   return (
     <div>
-      <div>
-        <h1>Landing page</h1>
-      </div>
+      <HeroSection />
+      <FeaturesSection />
     </div>
   );
 }
